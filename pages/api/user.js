@@ -5,7 +5,7 @@ import { get_current_cap, get_current_epoch, get_duration, get_end_time, get_ini
 import Web3 from 'web3';
 
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MORALIS_NODE_URL))
-const contract_address = '0x7B2Af2b0A2a178B8F92278Db7f0Da89E2D7d6E0C'
+const contract_address = '0x3a9640ACA23105658402d43e0f20fbbE9d8923Aa'
 
 
 const limiter = rateLimit({
