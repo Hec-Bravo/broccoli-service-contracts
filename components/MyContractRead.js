@@ -21,7 +21,7 @@ export default function MyContractRead() {
 
     async function getContractInfo() {
         try {
-            const res = await fetch('/api/user')
+            const res = await fetch('/api/fairlaunch')
             const options = await res.json()
 
             const options1 = options.totalRaised
