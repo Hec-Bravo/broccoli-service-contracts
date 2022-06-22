@@ -58,6 +58,13 @@ const _max_invest = {
     abi: [{"inputs":[],"name":"maxInvest","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
 }
 
+const _max_to_collect = {
+    chain: cadena,
+    address: contract_address,
+    function_name: "maxToCollect",
+    abi: [{"inputs":[],"name":"maxToCollect","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+}
+
 const _min_invest = {
     chain: cadena,
     address: contract_address,
@@ -114,12 +121,6 @@ const _total_issued = {
     abi: [{"inputs":[],"name":"totalIssued","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
 }
 
-const _total_raise_cap = {
-    chain: cadena,
-    address: contract_address,
-    function_name: "totalRaiseCap",
-    abi: [{"inputs":[],"name":"totalRaiseCap","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
-}
 
 const _total_raised = {
     chain: cadena,
@@ -168,8 +169,8 @@ export default async function handler(req, res) {
       await limiter.check(res, 10, 'CACHE_TOKEN') // 10 requests per minute
       res.status(200).json({ id: uuid.v4(), 
                                 duration: _duration, endTime: _end_time, hasSaleEnded: _has_sale_ended, investToken: _invest_token, investorInfoMap: _investor_info_map,
-                                maxInvest: _max_invest, minInvest: _min_invest, nrt: _nrt, numInvested: _num_invested, price: _price, redeemEnabled: _redeem_enabled, saleEnabled: _sale_enabled, 
-                                startTime: _start_time, totalIssued: _total_issued, totalRaiseCap: _total_raise_cap, totalRaised: _total_raised, totalRedeem: _total_redeem,
+                                maxInvest: _max_invest, maxToCollect: _max_to_collect, minInvest: _min_invest, nrt: _nrt, numInvested: _num_invested, price: _price, redeemEnabled: _redeem_enabled, saleEnabled: _sale_enabled, 
+                                startTime: _start_time, totalIssued: _total_issued, totalRaised: _total_raised, totalRedeem: _total_redeem,
                                 approve: _approve,
                                 contractAddress: contract_address, contractABI: contract_abi})
     } catch {
