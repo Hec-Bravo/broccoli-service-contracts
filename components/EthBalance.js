@@ -16,22 +16,30 @@ export default function EthBalance({ user }) {
   async function getInfo() {
     try {
       let options1 = {
-        chain: "0xa869",
+        chain: "0xa86a",
         address: user.get("ethAddress")
       }
+
+      // let options1 = {
+      //   chain: "0xa869",
+      //   address: user.get("ethAddress")
+      // }
+
+      // let options2 = {
+      //   chain: "0xa869",
+      //   address: user.get("ethAddress"),
+      //   from_block: "8961689"
+      // }
+
       const account_balance = await Web3Api.account.getNativeBalance(options1)
       console.log(account_balance)
       if (account_balance.balance) {
         setBalance(Moralis.Units.FromWei(account_balance.balance))
       }
 
-      let options2 = {
-        chain: "0xa869",
-        address: user.get("ethAddress"),
-        from_block: "8961689"
-      }
+      
 
-      const account_txs = await Web3Api.account.getTransactions(options2)
+      const account_txs = await Web3Api.account.getTransactions(options1)
       console.log(account_txs)
       if (account_txs.total) {
         setnTxIndex(account_txs.total)
