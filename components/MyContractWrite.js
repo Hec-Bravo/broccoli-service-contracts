@@ -17,9 +17,6 @@ export default function MyContractWrite() {
             <li className="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                 <Invest />
             </li>
-            <li className="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                <Redeem />
-            </li>
 
         </ul>
 
