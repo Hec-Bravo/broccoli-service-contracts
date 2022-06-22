@@ -3,8 +3,6 @@ import { useWeb3Contract } from "react-moralis";
 
 import Approve from './Approve';
 import Invest from './Invest';
-import Redeem from './Redeem';
-
 
 
 export default function MyContractWrite() {
@@ -17,7 +15,6 @@ export default function MyContractWrite() {
             <li className="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                 <Invest />
             </li>
-
         </ul>
 
     )
