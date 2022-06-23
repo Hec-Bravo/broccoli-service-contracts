@@ -26,7 +26,7 @@ export default function MyContractRead() {
 
             const options1 = options.totalRaised
             const raised = await moralisAPI.native.runContractFunction(options1)
-            console.log(raised)
+            //console.log(raised)
             if (raised) {
                 setTotalRaised(Moralis.Units.FromWei(raised, 6))
             }
@@ -57,12 +57,10 @@ export default function MyContractRead() {
 
             const options6 = options.maxInvest
             const var_maxInvest = await moralisAPI.native.runContractFunction(options6)
-            console.log(var_maxInvest)
+            //console.log(var_maxInvest)
             if (var_maxInvest) {
                 setMaxInvest(Moralis.Units.FromWei(var_maxInvest, 6))
             }
-
-
 
 
         } catch (e) {

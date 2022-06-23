@@ -153,6 +153,17 @@ const _redeem = {
     abi: [{"inputs":[],"name":"redeem","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 }
 
+//  ##############################################################  READ Functions for the stable coin (investToken)
+
+const _balance_of = {
+    chain: cadena,
+    address: invest_token_address,
+    function_name: "balanceOf",
+    abi: [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}],
+    params: {account: ""}
+}
+
+
 //  ##############################################################  WRITE Functions for the stable coin (investToken)
 const _approve = {
     chain: cadena,
@@ -164,6 +175,7 @@ const _approve = {
 
 
 
+
 export default async function handler(req, res) {
     try {
       await limiter.check(res, 10, 'CACHE_TOKEN') // 10 requests per minute
@@ -171,7 +183,7 @@ export default async function handler(req, res) {
                                 duration: _duration, endTime: _end_time, hasSaleEnded: _has_sale_ended, investToken: _invest_token, investorInfoMap: _investor_info_map,
                                 maxInvest: _max_invest, maxToCollect: _max_to_collect, minInvest: _min_invest, nrt: _nrt, numInvested: _num_invested, price: _price, redeemEnabled: _redeem_enabled, saleEnabled: _sale_enabled, 
                                 startTime: _start_time, totalIssued: _total_issued, totalRaised: _total_raised, totalRedeem: _total_redeem,
-                                approve: _approve,
+                                balanceOf: _balance_of, approve: _approve,
                                 contractAddress: contract_address, contractABI: contract_abi})
     } catch {
       res.status(429).json({ error: 'Rate limit exceeded' })
