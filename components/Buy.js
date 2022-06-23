@@ -3,12 +3,13 @@ import { useWeb3Contract } from "react-moralis";
 import { Moralis } from "moralis";
 
 export default function Buy() {
-    Moralis.initialize("pk_test_YWj7r9hi2eu3ra1VyBGJUja92nuMK3BzPIyPncIDZew0")
-    Moralis.initPlugins()
+    //Moralis.initialize("pk_test_YWj7r9hi2eu3ra1VyBGJUja92nuMK3BzPIyPncIDZew0")
+    //Moralis.initPlugins()
 
-    function buycrypto() {
+    async function buycrypto() {
         
-        Moralis.Plugins.fiat.buy()
+        await Moralis.Plugins.fiat.buy()
+        
     }
 
 
