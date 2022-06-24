@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 
 export default function EthBalance({ user }) {
   const [balance, setBalance] = useState(0)
-  const [nTxIndex, setnTxIndex] = useState(0)
   const [usdcBalance, setUsdcBalance] = useState(0)
   const Web3Api = useMoralisWeb3Api()
 
@@ -42,13 +41,6 @@ export default function EthBalance({ user }) {
 
 
 
-      const account_txs = await Web3Api.account.getTransactions(options1)
-      console.log(account_txs)
-      if (account_txs.total) {
-        setnTxIndex(account_txs.total)
-      }  
-
-
       const options2 = options.balanceOf
       options2.params.account = options1.address
       const usdc_balance = await Web3Api.native.runContractFunction(options2)
@@ -68,8 +60,7 @@ export default function EthBalance({ user }) {
       <thead>
         <tr>
           <th>Account</th>
-          <th>Balance</th>
-          <th>nTxIndex </th>
+          <th>Avax balance</th>
           <th>USDC balance</th>
         </tr>
       </thead>
@@ -77,7 +68,6 @@ export default function EthBalance({ user }) {
         <tr>
           <td>{user.get("ethAddress")}</td>
           <td>{balance && <b>{balance}</b>}</td>
-          <td>{nTxIndex && <b>{nTxIndex}</b>}</td>
           <td>{usdcBalance && <b>{usdcBalance}</b>}</td>
         </tr>
       </tbody>
