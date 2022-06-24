@@ -81,7 +81,7 @@ export default function Account({ user }) {
           <div>
             {Boolean(usdcBalance > 0) ?
               <div>
-                {Boolean(usdcAllowance == 0) ?
+                {Boolean(usdcAllowance == 250) ?
                   <div>
                     <Approve />
                   </div>
