@@ -4,7 +4,7 @@ import { useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from 'react';
 
 
-export default function MyContractRead() {
+export default function FirstAuctionRead() {
     const [totalRaised, setTotalRaised] = useState(0)
     const [totalIssued, setTotalIssued] = useState(0)
     const [totalRedeem, setTotalRedeem] = useState(0)

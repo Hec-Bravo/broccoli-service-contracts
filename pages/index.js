@@ -5,7 +5,7 @@ import { useMoralis } from 'react-moralis'
 import Login from '../components/Login'
 
 import MyContractWrite from '../components/MyContractWrite'
-import MyContractRead from '../components/MyContractRead'
+import FirstAuctionRead from '../components/FirstAuctionRead'
 import EthBalance from '../components/EthBalance'
 import Buying from '../components/Buying'
 
@@ -25,7 +25,7 @@ export default function Home() {
           <EthBalance user={user}/>
           <MyContractWrite />
           <Buying />
-          <MyContractRead />  
+          <FirstAuctionRead />  
 
         </>
         :
