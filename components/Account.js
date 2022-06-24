@@ -23,11 +23,9 @@ export default function Account({ user }) {
     try {
       const res = await fetch('/api/firstAuction')
       const options = await res.json()
-      let options1 = {
-        chain: "0xa86a",
-        address: user.get("ethAddress")
-        //   from_block: "8961689"
-      }
+
+      const options1 = options.account
+      options1.address = user.get("ethAddress")
 
       const account_balance = await Web3Api.account.getNativeBalance(options1)
       console.log(account_balance)
@@ -77,11 +75,11 @@ export default function Account({ user }) {
       </tbody>
     </table>
       <div className="flex justify-center items-center h-screen">
-        {Boolean(balance > 0) ?
+        {Boolean(balance > 0.005) ?
           <div>
-            {Boolean(usdcBalance > 0) ?
+            {Boolean(usdcBalance > 250) ?
               <div>
-                {Boolean(usdcAllowance == 250) ?
+                {Boolean(usdcAllowance != 2000) ?
                   <div>
                     <Approve />
                   </div>

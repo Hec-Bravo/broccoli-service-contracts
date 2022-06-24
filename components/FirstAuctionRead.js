@@ -22,7 +22,7 @@ export default function FirstAuctionRead() {
             const options = await res.json()
 
             const options1 = options.totalIssued
-            const issued = await moralisAPI.native.runContractFunction(options2)
+            const issued = await moralisAPI.native.runContractFunction(options1)
             if (issued) {
                 setTotalIssued(Moralis.Units.FromWei(issued))
             }
