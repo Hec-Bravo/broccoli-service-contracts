@@ -4,7 +4,7 @@ import { useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from 'react';
 
 
-export default function EthBalance({ user }) {
+export default function AccountInfo({ user }) {
   const [balance, setBalance] = useState(0)
   const [usdcBalance, setUsdcBalance] = useState(0)
   const Web3Api = useMoralisWeb3Api()
