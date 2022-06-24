@@ -28,7 +28,6 @@ export default function Account({ user }) {
       options1.address = user.get("ethAddress")
 
       const account_balance = await Web3Api.account.getNativeBalance(options1)
-      console.log(account_balance)
       if (account_balance.balance) {
         setBalance(Moralis.Units.FromWei(account_balance.balance))
       }

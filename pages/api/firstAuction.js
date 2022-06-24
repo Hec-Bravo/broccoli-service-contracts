@@ -48,13 +48,6 @@ const _invest_token = {
     abi: [{"inputs":[],"name":"investToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
 }
 
-const _investor_info_map = {
-    chain: cadena,
-    address: contract_address,
-    function_name: "investorInfoMap",
-    abi: [{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"investorInfoMap","outputs":[{"internalType":"uint256","name":"amountInvested","type":"uint256"},{"internalType":"bool","name":"claimed","type":"bool"}],"stateMutability":"view","type":"function"}],
-    params: { "<input>": ""}
-}
 
 const _max_invest = {
     chain: cadena,
@@ -194,7 +187,7 @@ export default async function handler(req, res) {
       await limiter.check(res, 10, 'CACHE_TOKEN') // 10 requests per minute
       res.status(200).json({ id: uuid.v4(), 
                                 account: _account,
-                                duration: _duration, endTime: _end_time, hasSaleEnded: _has_sale_ended, investToken: _invest_token, investorInfoMap: _investor_info_map,
+                                duration: _duration, endTime: _end_time, hasSaleEnded: _has_sale_ended, investToken: _invest_token,
                                 maxInvest: _max_invest, maxToCollect: _max_to_collect, minInvest: _min_invest, nrt: _nrt, numInvested: _num_invested, price: _price, redeemEnabled: _redeem_enabled, saleEnabled: _sale_enabled, 
                                 startTime: _start_time, totalIssued: _total_issued, totalRaised: _total_raised, totalRedeem: _total_redeem,
                                 allowance: _allowance, balanceOf: _balance_of, approve: _approve,
