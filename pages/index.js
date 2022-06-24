@@ -7,7 +7,7 @@ import Login from '../components/Login'
 import MyContractWrite from '../components/MyContractWrite'
 import MyContractRead from '../components/MyContractRead'
 import EthBalance from '../components/EthBalance'
-import BuyCrypto from '../components/BuyCrypto'
+import Buying from '../components/Buying'
 
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
           <MyContractWrite />
           <MyContractRead />
           <EthBalance user={user}/>
-          <BuyCrypto />
+          <Buying />
 
         </>
         :
