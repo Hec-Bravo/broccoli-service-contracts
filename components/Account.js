@@ -75,17 +75,17 @@ export default function Account({ user }) {
       </tbody>
     </table>
       <div className="flex justify-center items-center h-screen">
-        {Boolean(balance >= 0.005) ?
+        {Boolean(balance >= 0.01) ?
           <div>
             {Boolean(usdcBalance >= 250) ?
               <div>
-                {Boolean(usdcAllowance != 2000) ?
+                {Boolean(usdcAllowance >= 250) ?
                   <div>
-                    <Approve />
+                    <Invest />
                   </div>
                   :
                   <div>
-                    <Invest />
+                    <Approve />
                   </div>
                 }
               </div>
