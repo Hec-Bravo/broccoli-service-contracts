@@ -44,9 +44,9 @@ export default function Account({ user }) {
         setUsdcBalance(Moralis.Units.FromWei(usdc_balance, 6))
       }
 
-      const options3 = options.usdcAllowance
+      const options3 = options.allowance
       options3.params.owner = options1.address
-      options3.params.spender = options.investTokenAddress
+      options3.params.spender = options.contractAddress
       const usdc_allowance = await Web3Api.native.runContractFunction(options3)
       if (usdc_allowance) {
         setUsdcAllowance(Moralis.Units.FromWei(usdc_allowance, 6))
@@ -79,15 +79,15 @@ export default function Account({ user }) {
       <div className="flex justify-center items-center h-screen">
         {Boolean(balance > 0) ?
           <div>
-            {Boolean(usdcBalance > 250) ?
+            {Boolean(usdcBalance > 0) ?
               <div>
-                {Boolean(usdcAllowance == 2000) ?
+                {Boolean(usdcAllowance == 0) ?
                   <div>
-                    <Invest />
+                    <Approve />
                   </div>
                   :
                   <div>
-                    <Approve />
+                    <Invest />
                   </div>
                 }
               </div>

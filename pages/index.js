@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import { useMoralis } from 'react-moralis'
 import Login from '../components/Login'
 
-import MyContractWrite from '../components/MyContractWrite'
+
 import FirstAuctionRead from '../components/FirstAuctionRead'
 import Account from '../components/Account'
 
