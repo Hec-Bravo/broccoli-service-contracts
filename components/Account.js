@@ -40,6 +40,7 @@ export default function Account({ user }) {
       if (usdc_balance) {
         setUsdcBalance(Moralis.Units.FromWei(usdc_balance, 6))
       }
+      console.log(usdcBalance)
 
       const options3 = options.allowance
       options3.params.owner = options1.address
@@ -74,9 +75,9 @@ export default function Account({ user }) {
       </tbody>
     </table>
       <div className="flex justify-center items-center h-screen">
-        {Boolean(balance > 0.005) ?
+        {Boolean(balance >= 0.005) ?
           <div>
-            {Boolean(usdcBalance > 250) ?
+            {Boolean(usdcBalance >= 250) ?
               <div>
                 {Boolean(usdcAllowance != 2000) ?
                   <div>
