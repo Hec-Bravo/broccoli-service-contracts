@@ -22,7 +22,6 @@ export default function Home() {
           </div>
 
           <Account user={user}/>
-          <MyContractWrite />
           <FirstAuctionRead />  
 
         </>

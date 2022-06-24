@@ -155,6 +155,14 @@ const _redeem = {
 
 //  ##############################################################  READ Functions for the stable coin (investToken)
 
+const _allowance = {
+    chain: cadena,
+    address: invest_token_address,
+    function_name: "allowance",
+    abi: [{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}],
+    params: {owner: "", spender: ""}
+}
+
 const _balance_of = {
     chain: cadena,
     address: invest_token_address,
@@ -183,8 +191,8 @@ export default async function handler(req, res) {
                                 duration: _duration, endTime: _end_time, hasSaleEnded: _has_sale_ended, investToken: _invest_token, investorInfoMap: _investor_info_map,
                                 maxInvest: _max_invest, maxToCollect: _max_to_collect, minInvest: _min_invest, nrt: _nrt, numInvested: _num_invested, price: _price, redeemEnabled: _redeem_enabled, saleEnabled: _sale_enabled, 
                                 startTime: _start_time, totalIssued: _total_issued, totalRaised: _total_raised, totalRedeem: _total_redeem,
-                                balanceOf: _balance_of, approve: _approve,
-                                contractAddress: contract_address, contractABI: contract_abi})
+                                allowance: _allowance, balanceOf: _balance_of, approve: _approve,
+                                investTokenAddress: invest_token_address, contractAddress: contract_address, contractABI: contract_abi})
     } catch {
       res.status(429).json({ error: 'Rate limit exceeded' })
     }

@@ -4,10 +4,15 @@ import { useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from 'react';
 
 import Buy from './botones/Buy';
+import Trade from "./botones/Trade";
+import Approve from './botones/Approve';
+import Invest from './botones/Invest';
+
 
 export default function Account({ user }) {
   const [balance, setBalance] = useState(0)
   const [usdcBalance, setUsdcBalance] = useState(0)
+  const [usdcAllowance, setUsdcAllowance] = useState(0)
   const Web3Api = useMoralisWeb3Api()
 
   useEffect(() => {
@@ -21,18 +26,8 @@ export default function Account({ user }) {
       let options1 = {
         chain: "0xa86a",
         address: user.get("ethAddress")
+        //   from_block: "8961689"
       }
-
-      // let options1 = {
-      //   chain: "0xa869",
-      //   address: user.get("ethAddress")
-      // }
-
-      // let options2 = {
-      //   chain: "0xa869",
-      //   address: user.get("ethAddress"),
-      //   from_block: "8961689"
-      // }
 
       const account_balance = await Web3Api.account.getNativeBalance(options1)
       console.log(account_balance)
@@ -45,10 +40,18 @@ export default function Account({ user }) {
       const options2 = options.balanceOf
       options2.params.account = options1.address
       const usdc_balance = await Web3Api.native.runContractFunction(options2)
-      //console.log(usdc_balance)
       if (usdc_balance) {
         setUsdcBalance(Moralis.Units.FromWei(usdc_balance, 6))
       }
+
+      const options3 = options.usdcAllowance
+      options3.params.owner = options1.address
+      options3.params.spender = options.investTokenAddress
+      const usdc_allowance = await Web3Api.native.runContractFunction(options3)
+      if (usdc_allowance) {
+        setUsdcAllowance(Moralis.Units.FromWei(usdc_allowance, 6))
+      }
+
     } catch (e) {
       console.log(e)
     }
@@ -73,17 +76,34 @@ export default function Account({ user }) {
         </tr>
       </tbody>
     </table>
-    <div className="flex justify-center items-center h-screen">
-      {Boolean(balance > 0) ?
-        <div>
-          avax
-        </div> 
-        :
-        <div>
-          <Buy />
-        </div>
-      }
-    </div></>
+      <div className="flex justify-center items-center h-screen">
+        {Boolean(balance > 0) ?
+          <div>
+            {Boolean(usdcBalance > 250) ?
+              <div>
+                {Boolean(usdcAllowance == 2000) ?
+                  <div>
+                    <Invest />
+                  </div>
+                  :
+                  <div>
+                    <Approve />
+                  </div>
+                }
+              </div>
+              :
+              <div>
+                <Trade />
+              </div>
+            }
+          </div>
+          :
+          <div>
+            <Buy />
+          </div>
+        }
+      </div>
+    </>
   )
 }
 
