@@ -24,8 +24,8 @@ export default function Home() {
 
           <EthBalance user={user}/>
           <MyContractWrite />
-          <MyContractRead />  
           <Buying />
+          <MyContractRead />  
 
         </>
         :

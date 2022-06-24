@@ -8,7 +8,7 @@ export default function Buy() {
 
     async function buycrypto() {
 
-        await Moralis.Plugins.fiat.buy()
+        await Moralis.Plugins.fiat.buy();
 
     }
 

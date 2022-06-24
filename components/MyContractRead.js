@@ -8,9 +8,7 @@ export default function MyContractRead() {
     const [totalRaised, setTotalRaised] = useState(0)
     const [totalIssued, setTotalIssued] = useState(0)
     const [totalRedeem, setTotalRedeem] = useState(0)
-    const [price, setPrice] = useState(0)
-    const [minInvest, setMinInvest] = useState(0)
-    const [maxInvest, setMaxInvest] = useState(0)
+    
 
     const moralisAPI = useMoralisWeb3Api()
 
@@ -43,24 +41,7 @@ export default function MyContractRead() {
                 setTotalRedeem(Moralis.Units.FromWei(redeem))
             }
 
-            const options4 = options.price
-            const var_price = await moralisAPI.native.runContractFunction(options4)
-            if (var_price) {
-                setPrice(Moralis.Units.FromWei(var_price, 6))
-            }
-
-            const options5 = options.minInvest
-            const var_minInvest = await moralisAPI.native.runContractFunction(options5)
-            if (var_minInvest) {
-                setMinInvest(Moralis.Units.FromWei(var_minInvest, 6))
-            }
-
-            const options6 = options.maxInvest
-            const var_maxInvest = await moralisAPI.native.runContractFunction(options6)
-            //console.log(var_maxInvest)
-            if (var_maxInvest) {
-                setMaxInvest(Moralis.Units.FromWei(var_maxInvest, 6))
-            }
+            
 
 
         } catch (e) {
@@ -78,8 +59,8 @@ export default function MyContractRead() {
                     <th>Issued</th>
                     <th>Redeemed</th>
                     <th>Price</th>
-                    <th>Min inversión</th>
-                    <th>Max inversión</th>
+                    <th>Min invertir</th>
+                    <th>Max invertir</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,9 +68,9 @@ export default function MyContractRead() {
                     <td>{totalRaised && <b>{totalRaised}</b>}</td>
                     <td>{totalIssued && <b>{totalIssued}</b>}</td>
                     <td>{totalRedeem && <b>{totalRedeem}</b>}</td>
-                    <td>{price && <b>{price}</b>}</td>
-                    <td>{minInvest && <b>{minInvest}</b>}</td>
-                    <td>{maxInvest && <b>{maxInvest}</b>}</td>
+                    <td>$ 0.05</td>
+                    <td>$ 250</td>
+                    <td>$ 2,000</td>
                 </tr>
             </tbody>
         </table>

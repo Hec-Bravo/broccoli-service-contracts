@@ -1,8 +1,8 @@
 import React from "react";
 import { useWeb3Contract } from "react-moralis";
 
-import Approve from './Approve';
-import Invest from './Invest';
+import Approve from './botones/Approve';
+import Invest from './botones/Invest';
 
 
 export default function MyContractWrite() {
