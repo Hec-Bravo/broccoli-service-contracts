@@ -13,6 +13,8 @@ export default function Account({ user }) {
   const [balance, setBalance] = useState(0)
   const [usdcBalance, setUsdcBalance] = useState(0)
   const [usdcAllowance, setUsdcAllowance] = useState(0)
+  const [amegnxBalance, setAmegnxBalance] = useState(0)
+  const [usdcInvestedBalance, setUsdcInvestedBalance] = useState(0)
   const Web3Api = useMoralisWeb3Api()
 
   useEffect(() => {
@@ -35,12 +37,12 @@ export default function Account({ user }) {
 
 
       const options2 = options.balanceOf
+      options2.address = options.investTokenAddress
       options2.params.account = options1.address
       const usdc_balance = await Web3Api.native.runContractFunction(options2)
       if (usdc_balance) {
         setUsdcBalance(Moralis.Units.FromWei(usdc_balance, 6))
       }
-      console.log(usdcBalance)
 
       const options3 = options.allowance
       options3.params.owner = options1.address
@@ -48,6 +50,16 @@ export default function Account({ user }) {
       const usdc_allowance = await Web3Api.native.runContractFunction(options3)
       if (usdc_allowance) {
         setUsdcAllowance(Moralis.Units.FromWei(usdc_allowance, 6))
+      }
+
+      const options4 = options.balanceOf
+      options4.address = options.ameGNXAddress
+      options4.params.account = options1.address
+      const amegnx_balance = await Web3Api.native.runContractFunction(options4)
+      if ( amegnx_balance ) {
+        var amegnx_amount = Moralis.Units.FromWei(amegnx_balance, 18) 
+        setAmegnxBalance(amegnx_amount)
+        setUsdcInvestedBalance(amegnx_amount*0.05)
       }
 
     } catch (e) {
@@ -64,6 +76,8 @@ export default function Account({ user }) {
           <th>Account</th>
           <th>Avax balance</th>
           <th>USDC balance</th>
+          <th>ameGNX balance</th>
+          <th>USDC invested</th>
         </tr>
       </thead>
       <tbody>
@@ -71,6 +85,8 @@ export default function Account({ user }) {
           <td>{user.get("ethAddress")}</td>
           <td>{balance && <b>{balance}</b>}</td>
           <td>{usdcBalance && <b>{usdcBalance}</b>}</td>
+          <td>{amegnxBalance && <b>{amegnxBalance}</b>}</td>
+          <td>{usdcInvestedBalance && <b>{usdcInvestedBalance}</b>}</td>
         </tr>
       </tbody>
     </table>
