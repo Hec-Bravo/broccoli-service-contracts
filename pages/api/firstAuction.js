@@ -10,6 +10,7 @@ const contract_abi = [{"inputs":[{"internalType":"address","name":"_investToken"
 const contract_address = "0x02d602dF4748D18919Aa9277Dd4e4003d9797214";
 const invest_token_address = "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E";
 const cadena = "0xa86a"
+const amegnx_addres = "0x1c674c67E353cDB4e2d1A932FE087ECc312ec0c8";
 
 //  ##############################################################  User READ
 const _account = {
@@ -163,7 +164,7 @@ const _allowance = {
 
 const _balance_of = {
     chain: cadena,
-    address: invest_token_address,
+    address: "",
     function_name: "balanceOf",
     abi: [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}],
     params: {account: ""}
@@ -191,7 +192,7 @@ export default async function handler(req, res) {
                                 maxInvest: _max_invest, maxToCollect: _max_to_collect, minInvest: _min_invest, nrt: _nrt, numInvested: _num_invested, price: _price, redeemEnabled: _redeem_enabled, saleEnabled: _sale_enabled, 
                                 startTime: _start_time, totalIssued: _total_issued, totalRaised: _total_raised, totalRedeem: _total_redeem,
                                 allowance: _allowance, balanceOf: _balance_of, approve: _approve,
-                                investTokenAddress: invest_token_address, contractAddress: contract_address, contractABI: contract_abi})
+                                investTokenAddress: invest_token_address, contractAddress: contract_address, ameGNXAddress: amegnx_addres, contractABI: contract_abi})
     } catch {
       res.status(429).json({ error: 'Rate limit exceeded' })
     }
