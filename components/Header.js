@@ -1,5 +1,5 @@
 import { Button, Center, Flex, Text } from "@chakra-ui/react";
-import HeaderBalance from './info/HeaderBalance'
+import HeaderBalance from './Info/HeaderBalance'
 
 export default function Header({ isAuthenticated, isAuthenticating, user, authenticate, logout, isLoggingOut }) {
 
