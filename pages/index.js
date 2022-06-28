@@ -3,32 +3,61 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useMoralis } from 'react-moralis'
 import Login from '../components/Login'
+import { Flex, Text, Button, Tabs, TabList, Tab, TabPanels, TabPanel, Box, Link } from "@chakra-ui/react";
+
+import Header from "../components/Header";
 
 
-import FirstAuctionRead from '../components/FirstAuctionRead'
-import Account from '../components/Account'
-
+import BuyAvax from '../components/Interact/BuyAvax'
+import TradeAvax from '../components/Interact/TradeAvax'
+import InvestUsdc from '../components/Interact/InvestUsdc'
 
 export default function Home() {
-  const { isAuthenticated, logout, user } = useMoralis();
+  const { isAuthenticated, user, isAuthenticating, authenticate, logout, isLoggingOut } = useMoralis();
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Head>
+          <title>Gain10X</title>
+        </Head>
+        <Flex direction="column" justifyContent="center" alignItems="center" width="100vw" height="100vh" bgColor="aliceblue">
+          <Text class="text-7xl" fontWeight="bold" color="dark">Welcome to Gain10X First Auction.</Text>
+          <Login />
+          <Link fontSize="3xl" fontWeight="bold" color="black" href="https://support.avax.network/en/articles/4626956-how-do-i-set-up-metamask-on-avalanche" target="_blank">Add avalanche to MetaMask</Link>
+        </Flex>
 
-
+      </>
+    )
+  }
   return (
-    <div className="grid place-items-center h-screen bg-blue-500">
-      {isAuthenticated ?
-        <>
-          <div className='px-10 py-3 bg-white rounded-lg flex-col'>
-            <button type="button" onClick={logout} className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Disconnect</button>
-          </div>
+    <>
+      <Head>
+        <title>Gain10X</title>
+      </Head>
+      <Flex direction="column" justifyContent="center" width="100vw" height="100vh" bgColor="aliceblue">
+        <Header isAuthenticated={isAuthenticated} isAuthenticating={isAuthenticating} user={user} authenticate={authenticate} logout={logout} isLoggingOut={isLoggingOut} />
+        <Box flex="1" bg="aliceblue" px="52" py="20">
+          <Tabs size="lg" colorScheme="purple" align="center" variant="enclosed">
+            <TabList>
+              <Tab fontWeight="bold">Buy</Tab>
+              <Tab fontWeight="bold">Trade</Tab>
+              <Tab fontWeight="bold">Invest</Tab>
 
-          <FirstAuctionRead /> 
-          <Account user={user}/>
-           
-
-        </>
-        :
-        <Login />
-      }
-    </div>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <BuyAvax />
+              </TabPanel>
+              <TabPanel>
+                <TradeAvax />
+              </TabPanel>
+              <TabPanel>
+                <InvestUsdc user={user}/>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
+      </Flex>
+    </>
   )
 }
