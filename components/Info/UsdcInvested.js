@@ -2,8 +2,7 @@ import React from "react";
 import { Moralis } from "moralis";
 import { useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from 'react';
-import { Flex, Image, Text, Box, Center } from "@chakra-ui/react";
-
+import { Text } from "@chakra-ui/react";
 
 export default function UsdcInvested({ user }) {
     const [balance, setBalance] = useState(0)
@@ -30,7 +29,7 @@ export default function UsdcInvested({ user }) {
             } catch (e) {
                 console.log(e)
             }
-        }
+    }
 
 
 
