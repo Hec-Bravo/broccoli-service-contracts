@@ -3,10 +3,10 @@ import { Moralis } from "moralis";
 import { useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from 'react';
 
-import Buy from './botones/Buy';
-import Trade from "./botones/Trade";
-import Approve from './botones/Approve';
-import Invest from './botones/Invest';
+import Buy from './Buttons/Buy';
+import Trade from "./Buttons/Trade";
+import Approve from './Buttons/Approve';
+import Invest from './Buttons/Invest';
 
 
 export default function Account({ user }) {
