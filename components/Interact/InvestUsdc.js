@@ -5,14 +5,14 @@ import { Moralis } from "moralis";
 import { useMoralisWeb3Api, useMoralis } from "react-moralis";
 import { useEffect, useState } from 'react';
 
-import Trade from "../Buttons/Trade";
+import NotEnoughAmount from "../Info/NotEnoughAmount";
 import Approve from '../Buttons/Approve';
 import Invest from '../Buttons/Invest';
 import AmeGNXBalance from '../Info/AmeGNXBalance';
 import UsdcInvested from '../Info/UsdcInvested';
 
 export default function InvestUsdc({ user }) {
-    const [data, setData] = useState({ usdcBalance: 0, usdcAllowance: 0})
+    const [data, setData] = useState({ usdcBalance: 0, usdcAllowance: 0 })
     const Web3Api = useMoralisWeb3Api()
 
     useEffect(() => {
@@ -27,19 +27,19 @@ export default function InvestUsdc({ user }) {
             const options1 = options.balanceOf
             options1.address = options.investTokenAddress
             options1.params.account = user.get("ethAddress")
-            const gross_usdc_balance = await Web3Api.native.runContractFunction(options1)
 
 
             const options2 = options.allowance
             options2.params.owner = user.get("ethAddress")
             options2.params.spender = options.contractAddress
-            const gross_usdc_allowance = await Web3Api.native.runContractFunction(options2)
+
+            const gross_values = await Promise.all([Web3Api.native.runContractFunction(options1), Web3Api.native.runContractFunction(options2)])
 
 
-            if (gross_usdc_balance && gross_usdc_allowance) {
-                const usdc_balance = Moralis.Units.FromWei(gross_usdc_balance, 6)
-                const usdc_allowance = Moralis.Units.FromWei(gross_usdc_allowance, 6)
-                setData({ usdcBalance: usdc_balance, usdcAllowance: usdc_allowance})
+            if (gross_values[0] && gross_values[1]) {
+                const usdc_balance = Moralis.Units.FromWei(gross_values[0], 6)
+                const usdc_allowance = Moralis.Units.FromWei(gross_values[1], 6)
+                setData({ usdcBalance: usdc_balance, usdcAllowance: usdc_allowance })
             }
 
 
@@ -71,7 +71,7 @@ export default function InvestUsdc({ user }) {
                                 </div>
                                 :
                                 <div>
-                                    <Trade />
+                                    <NotEnoughAmount />
                                 </div>
                             }
 
@@ -86,8 +86,8 @@ export default function InvestUsdc({ user }) {
                         <Tbody>
                             <Tr>
                                 <Td isNumeric>{data.usdcBalance && <b>{data.usdcBalance}</b>}</Td>
-                                <Td isNumeric><AmeGNXBalance user={user}/></Td>
-                                <Td isNumeric><UsdcInvested user={user}/></Td>
+                                <Td isNumeric><AmeGNXBalance user={user} /></Td>
+                                <Td isNumeric><UsdcInvested user={user} /></Td>
                             </Tr>
                             <Tr>
                                 <Td>Min to invest per account:</Td>
