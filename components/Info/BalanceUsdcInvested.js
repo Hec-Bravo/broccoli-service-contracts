@@ -4,7 +4,7 @@ import { useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from 'react';
 import { Text } from "@chakra-ui/react";
 
-export default function UsdcInvested({ user }) {
+export default function BalanceUsdcInvested({ user }) {
     const [balance, setBalance] = useState(0)
     const Web3Api = useMoralisWeb3Api()
 

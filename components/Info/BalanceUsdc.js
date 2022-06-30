@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Text } from "@chakra-ui/react";
 
 
-export default function AmeGNXBalance({ user }) {
+export default function BalanceUsdc({ user }) {
     const [balance, setBalance] = useState(0)
     const Web3Api = useMoralisWeb3Api()
 
@@ -19,14 +19,12 @@ export default function AmeGNXBalance({ user }) {
             const options = await res.json()
 
             const options1 = options.balanceOf
-            options1.address = options.ameGNXAddress
+            options1.address = options.investTokenAddress
             options1.params.account = user.get("ethAddress")
-            const amegnx_balance = await Web3Api.native.runContractFunction(options1)
-            if (amegnx_balance) {
-                setBalance(Moralis.Units.FromWei(amegnx_balance, 18))
+            const usdc_balance = await Web3Api.native.runContractFunction(options1)
+            if (usdc_balance) {
+                setBalance(Moralis.Units.FromWei(usdc_balance, 6))
             }
-
-
         } catch (e) {
             console.log(e)
         }
