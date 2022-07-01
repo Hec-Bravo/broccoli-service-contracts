@@ -185,7 +185,7 @@ const _approve = {
 
 export default async function handler(req, res) {
     try {
-      await limiter.check(res, 20, 'CACHE_TOKEN') // 10 requests per minute
+      await limiter.check(res, 24, 'CACHE_TOKEN') // 10 requests per minute
       res.status(200).json({ id: uuid.v4(), 
                                 account: _account,
                                 duration: _duration, endTime: _end_time, hasSaleEnded: _has_sale_ended, investToken: _invest_token,

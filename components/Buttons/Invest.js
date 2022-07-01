@@ -20,19 +20,33 @@ export default function Invest({account}) {
         try {
             const res = await fetch('/api/firstAuction')
             const options = await res.json()
-            console.log("invest")
-            console.log(options)
+            
+            
 
 
             const optionsAllowance2 = options.allowance
             optionsAllowance2.params.owner = account
             optionsAllowance2.params.spender = options.contractAddress
 
-            const balance = await Web3Api.native.runContractFunction(optionsAllowance2)
-            const usdc_allowance = Moralis.Units.FromWei(balance, 6)
+            const optionsInvested = options.balanceOf
+            optionsInvested.address = options.ameGNXAddress
+            optionsInvested.params.account = account
+
+            //const balance = await Web3Api.native.runContractFunction(optionsAllowance2)
+            const amounts = await Promise.all([Web3Api.native.runContractFunction(optionsAllowance2), Web3Api.native.runContractFunction(optionsInvested)])
+            const usdc_allowance = Moralis.Units.FromWei(amounts[0], 6)
+            const usdc_invested = Moralis.Units.FromWei(amounts[1], 18) * 0.05
+
+            console.log("invest")
+            console.log(usdc_invested)
+
 
             if (parseFloat(usdc_allowance) >= 250) {
-                runContractFunction()
+                if (usdc_invested <= 1750 ) {
+                    runContractFunction()
+                } else {
+                    alert("Sorry, you can't invest more USDC.")
+                }
             } else {
                 alert("Execute Approve first.")
             }
