@@ -37,20 +37,20 @@ export default function Home() {
         <Box flex="1" bg="aliceblue" px="52" py="20">
           <Tabs size="lg" colorScheme="purple" align="center" variant="enclosed">
             <TabList>
-              <Tab fontWeight="bold">Buy</Tab>
-              <Tab fontWeight="bold">Trade</Tab>
               <Tab fontWeight="bold">Invest</Tab>
+              <Tab fontWeight="bold">Buy AVAX</Tab>
+              <Tab fontWeight="bold">Trade</Tab>  
 
             </TabList>
             <TabPanels>
+              <TabPanel>
+                <InvestUsdc user={user}/>
+              </TabPanel>
               <TabPanel>
                 <BuyAvax />
               </TabPanel>
               <TabPanel>
                 <TradeAvax />
-              </TabPanel>
-              <TabPanel>
-                <InvestUsdc user={user}/>
               </TabPanel>
             </TabPanels>
           </Tabs>
