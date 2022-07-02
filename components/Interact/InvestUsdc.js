@@ -1,5 +1,4 @@
-import { Flex, Image, Text, Box, Center, TableContainer, Table, TableCaption, Thead, Tbody, Tr, Td, Th, Tfoot } from "@chakra-ui/react";
-import CustomContainer from "../Basic/CustomContainer";
+import { Flex, Text, Box, TableContainer, Table, TableCaption, Thead, Tbody, Tr, Td, Th, Tfoot } from "@chakra-ui/react";
 import React from "react";
 
 
@@ -12,13 +11,14 @@ import Investing from '../Buttons/Investing';
 export default function InvestUsdc({ user }) {
 
     return (
-        <CustomContainer>
-            <Flex direction="column" justifyContent="center" alignItems="center" width="50vw" height="50vh" bgColor="aliceblue">
+        <Flex direction="column" justifyContent="center" alignItems="center" width="50vw" height="50vh" bgColor="aliceblue">
 
+
+            <Box bg="white" width="1400px" height="1000px" rounded="lg" shadow="lg" textAlign="center">
                 <TableContainer>
                     <Table variant='simple'>
                         <TableCaption>
-                           <Investing user={user} />
+                            <Investing user={user} />
                         </TableCaption>
                         <Thead>
                             <Tr>
@@ -34,7 +34,7 @@ export default function InvestUsdc({ user }) {
                                 <Td isNumeric><BalanceUsdcInvested user={user} /></Td>
                             </Tr>
                             <Tr>
-                                <Td>Min to invest per account:</Td>
+                                <Td>Min to invest per transaction:</Td>
                                 <Td isNumeric>$250</Td>
                                 <Td></Td>
                             </Tr>
@@ -53,9 +53,8 @@ export default function InvestUsdc({ user }) {
                         </Tfoot>
                     </Table>
                 </TableContainer>
-
-            </Flex>
-        </CustomContainer>
+            </Box>
+        </Flex>
 
     )
 }

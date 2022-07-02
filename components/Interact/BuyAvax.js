@@ -1,11 +1,6 @@
-import { Flex, Image, Text, Box, Center } from "@chakra-ui/react";
-import { useMoralis } from "react-moralis";
-import CustomContainer from "../Basic/CustomContainer";
-import React from "react";
+import { Flex, Image, Text, Box } from "@chakra-ui/react";
 
-export default function BuyAvax({ user }) {
-    const [input, setInput] = React.useState('')
-    const { setUserData, isUserUpdating } = useMoralis();
+export default function BuyAvax() {
     return (
         <Flex direction="column" justifyContent="normal" alignItems="center" width="50vw" height="50vh" bgColor="aliceblue">
 
