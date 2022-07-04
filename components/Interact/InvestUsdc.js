@@ -14,7 +14,7 @@ export default function InvestUsdc({ user }) {
         <Flex direction="column" justifyContent="center" alignItems="center" width="50vw" height="50vh" bgColor="aliceblue">
 
 
-            <Box bg="white" width="1400px" height="1000px" rounded="lg" shadow="lg" textAlign="center">
+            <Box bg="white" width="800px" height="550px" rounded="lg" shadow="lg" textAlign="center">
                 <TableContainer>
                     <Table variant='simple'>
                         <TableCaption>

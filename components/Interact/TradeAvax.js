@@ -10,7 +10,7 @@ export default function TradeAvax({ user }) {
         <CustomContainer>
             <Flex direction="column" justifyContent="center" alignItems="center" width="50vw" height="50vh" bgColor="aliceblue">
 
-                <Text class="text-2xl" fontWeight="bold" color="dark">Swap AVAX for USDC at Trader Joe's</Text>
+                <Text class="text-2xl" fontWeight="bold" color="dark">Swap AVAX for USDC at Trader Joe</Text>
                 <Box boxSize='fit-content'>
                     <button type="button" onClick={(e) => {
                         e.preventDefault();
