@@ -16,8 +16,6 @@ export default function Investing({ user }) {
         try {
             const res = await fetch('/api/firstAuction')
             const options = await res.json()
-            console.log("investing")
-            console.log(options)
 
             const optionsBalance = options.balanceOf
             optionsBalance.address = options.investTokenAddress
