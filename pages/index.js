@@ -5,7 +5,6 @@ import { Flex, Text, Tabs, TabList, Tab, TabPanels, TabPanel, Box, Link } from "
 import Login from '../components/Basic/Login'
 import Header from "../components/Basic/Header";
 
-import Trade from '../components/Interact/Trade'
 
 import BuyAvax from '../components/Interact/BuyAvax'
 import TradeAvax from '../components/Interact/TradeAvax'
@@ -51,7 +50,7 @@ export default function Home() {
                 <BuyAvax />
               </TabPanel>
               <TabPanel>
-                <Trade />
+                <TradeAvax  account={user.get("ethAddress")}/>
               </TabPanel>
             </TabPanels>
           </Tabs>
